@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#main{
+			width:100%;
+			height:600px;
+			background-color:silver;
+			position:relative;
+		}
+		.div1{
+			display: inline-block;
+			float: left;
+			width:300px;
+			height:500px;
+			background-color:yellow;
+			margin:50px 100px;
+		}
+		.div2{
+			float:left;
+			width:300px;
+			height:500px;
+			background-color:yellow;
+			margin:50px 100px;
+		}
+		.div1 span{
+			position:absolute;
+			width:300px;
+			height:80px;
+			display: inline-block;
+			left:100px;
+			
+			/*border:1px solid red;*/
+			 /*border-bottom:1px solid black;*/
+			/*background-color: red; */
+		}
+		span:nth-child(1){
+			background-color:pink;
+			top:50px;
+		}
+		span:nth-child(2){
+			background-color:red;
+			top:130px;
+		}
+		span:nth-child(3){
+			background-color:green;
+			top:210px;
+		}
+		span:nth-child(4){
+			background-color:blue;
+			top:290px;
+		}
+		
+		.div2 span{
+			position:absolute;
+			width:300px;
+			height:80px;
+			display: inline-block;
+			left:600px;
+			
+			/*border:1px solid red;*/
+			 /*border-bottom:1px solid black;*/
+			/*background-color: red; */
+		}
+	</style>
+
+	<script src="util02_3 - copy.js"></script>
+	<script src="task02-5.js"></script>
+	
+</head>
+<body>
+	<div id="main">
+		<div class="div1">
+			<span  draggable="true" class="d11"></span>
+			<span draggable="true" class="d12"></span>
+			<span draggable="true" class="d13"></span>
+			<span draggable="true" class="d14"></span>
+			<!-- <div></div>
+			<div></div>
+			<div></div> -->
+		</div>
+		<div class="div2">
+			<span  draggable="true" class="d21"></span>
+			<span draggable="true" class="d22"></span>
+			<span draggable="true" class="d23"></span>
+			<span draggable="true" class="d24"></span>
+		</div>
+	</div>
+</body>
+</html>

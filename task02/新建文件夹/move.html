@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#move{
+			position:absolute;
+			left:0px;
+			width:200px;
+			height:200px;
+			background-color:red;
+			opacity:0.3;
+		}
+
+	</style>
+	<script>
+window.onload=function(){
+		var move=document.getElementById("move");
+		move.onmouseover=function(){
+			startMove(move,100,"opacity");
+		}
+		move.onmouseout=function(){
+			startMove(move,30,"opacity");
+		}
+
+function startMove(element,iTarget,option){
+	clearInterval(element.trimer);
+	//透明度
+	if(option=="opacity"){
+			var opacity=parseFloat(getStyle(element,"opacity"))*100;
+			element.trimer=setInterval(function(){
+				var speed=(iTarget-opacity)/10 ;
+				speed=speed>0 ? Math.ceil(speed):Math.floor(speed);
+				if(opacity==iTarget){
+					clearInterval(element.trimer);
+				}else{	
+					opacity+=speed;
+					if(element.style.filter ){
+						element.style.filter = "alpha(opacity:" + opacity + ")";
+						}else{ //IE
+                    		element.style.opacity = opacity / 100;
+                    } //标准
+				}
+			},30);
+	}else{
+		//位移
+			var left=parseInt(getStyle(element,"left"));
+			element.trimer=setInterval(function(){
+				var speed=(iTarget-left)/10 ;
+				speed=speed>0 ? Math.ceil(speed):Math.floor(speed);
+				if(left==iTarget){
+					clearInterval(element.trimer);
+				}else{
+				left+=speed;
+				move.style.left=left+"px";
+				}
+			},30);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//函数 getStyle() 获取元素 CSS 样式
+function getStyle(elem,styleName){
+        if(elem.style[styleName]){//内联样式
+            return elem.style[styleName];
+        }
+        else if(elem.currentStyle){//IE
+            return elem.currentStyle[styleName];
+        }
+        else if(document.defaultView && document.defaultView.getComputedStyle){//DOM
+            styleName = styleName.toLowerCase();
+            var s = document.defaultView.getComputedStyle(elem,null);
+            return s.getPropertyValue(styleName);
+        }
+        else{//other,for example, Safari
+            return null;
+        }
+ }
+}//onload
+	</script>
+</head>
+<body>
+	<div id="move"></div>
+</body>
+</html>

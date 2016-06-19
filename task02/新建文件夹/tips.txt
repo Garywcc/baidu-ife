@@ -1,0 +1,19 @@
+1.通过document.getElementById(element).style.xxx可以获取元素的样式信息但是对于通过class属性引用的外部样式表就获取不到了，感兴趣的朋友可以了解下
+
+大家都知道，用document.getElementById(‘element').style.xxx可以获取元素的样式信息，可是它获取的只是DOM元素style属性里的样式规则，对于通过class属性引用的外部样式表，就拿不到我们要的信息了。
+
+DOM标准里有个全局方法getComputedStyle，可以获取到当前对象样式规则信息，如：getComputedStyle(obj,null).paddingLeft，就能获取到对象的左内边距。但是事情还没完，万恶的IE不支持此方法，它有自己的一个实现方式，那就是currentStyle，不同于全局方法getComputedStyle，它是作为DOM元素属性存在的，如：obj.currentStyle.paddingLeft，在IE中就获取到对象的左内边距了，兼容性的写法如下： 
+
+
+2.
+
+dom选取页面元素对象的子对象时
+
+children 选取不包括空白节点
+
+而childNodes在firefox/chorm会选取空白节点
+
+3.
+}else if(left==destination){//一个=为赋值，应该为==
+clearTimeout(element.interval);
+				
