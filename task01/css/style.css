@@ -59,7 +59,7 @@ img{
 
     background:rgb(231,225,233); /* 一些不支持背景渐变的浏览器 */  
     background:-moz-linear-gradient(top, rgba(231,225,233,0.7), rgba(231,225,233, 0.5),rgba(231,225,233,0));  
-    /*background:-webkit-gradient(linear, 0 0, 0 bottom, from(#ff0000), to(rgba(0, 0, 255, 0.5)));  */
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#FFF), to(rgba(231, 225, 233, 0))); 
     background:-o-linear-gradient(rgba(231,225,233,0.7), rgba(231,225,233, 0.5),rgba(231,225,233,0));
 }
 .sub_context{

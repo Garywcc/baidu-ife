@@ -61,7 +61,23 @@ function isSiblingNode(element, siblingNode) {
             }
         }
 
+ function getElementsByClassName1(fareleme,classname){
+            if(fareleme.getElementsByClassName){
+                var sd=fareleme.getElementsByClassName(classname);
+                return sd;
+                
+            }else{
+                var result=new Array();
+                var eles=fareleme.getElementsByTagName("*");
 
+                for(i=0,len=eles.length;i<len;i++){
+                    if(eles[i].className.indexOf(classname)!=-1){
+                        result[result.length]=eles[i];
+                    }
+                }
+                return result;
+            }
+        }
 
 
 // 实现一个简单的Query
@@ -73,7 +89,7 @@ function isSiblingNode(element, siblingNode) {
          
              if(dis=="."){
 
-                     element=/*document.*/getElementsByClassName(ds)[0];
+                     element=/*document.*/getElementsByClassName(ds);
              }else if(dis=="#" && (selector.indexOf(".")==-1) && (ds.indexOf("#")==-1) ){
                
                 element=document.getElementById(ds);
@@ -196,6 +212,33 @@ function delegateEvent(fartherelem, childelem, type,listener) {
         var event=event || window.event;
         var target=event.target || event.srcElement;
         if(target.tagName.toLowerCase()===childelem){          //tagName 属性返回元素的标签名。在 HTML 中，tagName 属性的返回值始终是大写的。
+            //listener(fartherelem,childelem);
+            listener.call(target,event);
+            //listener.call(target,fartherelem,childelem);
+            // target.listener(fartherelem,childelem);
+            
+        }
+   });
+}
+function delegateEvent1(fartherelem, selec, type,listener) {
+   return addEvent(fartherelem,type,function(event){
+        var event=event || window.event;
+        var target=event.target || event.srcElement;
+        if(target.id.toLowerCase()===selec){          //tagName 属性返回元素的标签名。在 HTML 中，tagName 属性的返回值始终是大写的。
+            //listener(fartherelem,childelem);
+            listener.call(target,event);
+            //listener.call(target,fartherelem,childelem);
+            // target.listener(fartherelem,childelem);
+            
+        }
+   });
+}
+
+function delegateEvent2(fartherelem, selec, type,listener) {
+   return addEvent(fartherelem,type,function(event){
+        var event=event || window.event;
+        var target=event.target || event.srcElement;
+        if(target.className.toLowerCase().indexOf(selec)>-1){          //tagName 属性返回元素的标签名。在 HTML 中，tagName 属性的返回值始终是大写的。
             //listener(fartherelem,childelem);
             listener.call(target,event);
             //listener.call(target,fartherelem,childelem);
@@ -327,10 +370,33 @@ function uniqArray(arr){
 }
 
 
+//函数 getStyle() 获取元素 CSS 样式
+function getStyle(elem,styleName){
+        if(elem.style[styleName]){//内联样式
+            return elem.style[styleName];
+        }
+        else if(elem.currentStyle){//IE
+            return elem.currentStyle[styleName];
+        }
+        else if(document.defaultView && document.defaultView.getComputedStyle){//DOM
+            styleName = styleName.toLowerCase();
+            var s = document.defaultView.getComputedStyle(elem,null);
+            return s.getPropertyValue(styleName);
+        }
+        else{//other,for example, Safari
+            return null;
+        }
+    }
 
 
-
-
+function insertAfter(newElement,targetElement){
+    var parent=targetElement.parentNode;
+    if(parent.lastChild==targetElement){
+        parent.appendChild(newElement);
+    }else{
+        parent.insertBefore(newElement,targetElement.nextSibling);
+    }
+}
 
 
 
